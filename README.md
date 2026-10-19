@@ -15,6 +15,6 @@
  W5 Ringkasan
  W6 Validasi form
  Fitur khas: uang bulanan, jatah harian, peringatan
- Bonus: (isi yang selesai)
+ Bonus: 
 
 
