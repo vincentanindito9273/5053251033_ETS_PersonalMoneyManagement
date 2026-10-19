@@ -13,7 +13,7 @@
 
 ## Fitur yang Belum Selesai
 
-- [ ] **W5:** Ringkasan transaksi
-- [ ] **W6:** Validasi form
-- [ ] **Fitur khas:** Input uang bulanan, perhitungan jatah harian, dan peringatan jika pengeluaran harian melebihi jatah
-- [ ] **Bonus:** Belum dikerjakan
+- [x] **W5:** Ringkasan transaksi
+- [x] **W6:** Validasi form
+- [x] **Fitur khas:** Input uang bulanan, perhitungan jatah harian, dan peringatan jika pengeluaran harian melebihi jatah
+- [x] **Bonus:** Belum dikerjakan

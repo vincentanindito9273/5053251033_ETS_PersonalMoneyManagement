@@ -3,84 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="MoneyTalks membantu mahasiswa mencatat pemasukan dan pengeluaran dengan sederhana.">
-  <title>MoneyTalks — Catatan Keuangan</title>
+  <meta name="description" content="MoneyTalks membantu mahasiswa kos mengelola pemasukan, pengeluaran, dan uang bulanan.">
+  <title>MoneyTalks — Personal Finance</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 <body>
   <header class="topbar">
     <a class="brand" href="#beranda" aria-label="MoneyTalks beranda"><span class="brand-mark">M</span><span>MoneyTalks</span></a>
-
+    
   </header>
 
   <main class="container" id="beranda">
     <section class="welcome">
       <div>
-        <p class="eyebrow">KEUANGAN PRIBADI</p>
         <h1>Atur uangmu, <span>lebih tenang.</span></h1>
-        <p class="welcome-copy">Catat pemasukan dan pengeluaranmu dalam satu tempat.</p>
+        <p class="welcome-copy">Kelola uang kos dengan lebih terarah.</p>
       </div>
       <div class="welcome-icon" aria-hidden="true">Rp</div>
     </section>
 
-    <section class="summary-grid" aria-label="Ringkasan keuangan">
-      <article class="summary-card income-card">
-        <div class="summary-heading"><span class="summary-icon">↗</span><span>Total pemasukan</span></div>
-        <p class="summary-value" id="totalIncome">Rp0</p>
-      </article>
-      <article class="summary-card expense-card">
-        <div class="summary-heading"><span class="summary-icon">↘</span><span>Total pengeluaran</span></div>
-        <p class="summary-value" id="totalExpense">Rp0</p>
-      </article>
+    <section class="panel" style="margin-bottom: 18px;">
+      <div class="panel-heading">
+        <div><p class="eyebrow">MONTHLY ALLOWANCE</p><h2>Uang Bulanan</h2><p class="welcome-copy">Masukkan uang bulanan yang kamu terima.</p></div>
+      </div>
+      <form id="formBulanan" novalidate>
+        <div class="field">
+          <label for="inputBulanan">Nominal uang bulanan (Rp)</label>
+          <div class="amount-input"><span>Rp</span><input type="number" id="inputBulanan" min="0" step="1" placeholder="Contoh: 1500000" required></div>
+          <small class="field-error" id="errorBulanan" role="status" aria-live="polite"></small>
+        </div>
+        <button class="primary-button" type="submit">Simpan uang bulanan <span aria-hidden="true">→</span></button>
+      </form>
     </section>
+
+    <section class="summary-grid" aria-label="Ringkasan keuangan">
+      <article class="summary-card income-card"><div class="summary-heading"><span class="summary-icon">↗</span><span>Total pemasukan bulan ini</span></div><p class="summary-value" id="totalIncome">Rp0</p></article>
+      <article class="summary-card expense-card"><div class="summary-heading"><span class="summary-icon">↘</span><span>Total pengeluaran bulan ini</span></div><p class="summary-value" id="totalExpense">Rp0</p></article>
+      <article class="summary-card"><div class="summary-heading"><span class="summary-icon">＝</span><span>Sisa uang</span></div><p class="summary-value" id="sisaUang">Rp0</p><p class="welcome-copy">Perkiraan saldo bulan ini</p></article>
+      <article class="summary-card income-card"><div class="summary-heading"><span class="summary-icon">◷</span><span>Jatah harian</span></div><p class="summary-value" id="jatahHarian">Rp0</p><p class="welcome-copy" id="sisaHari">Sisa hari bulan ini</p></article>
+    </section>
+
+    <div id="peringatan" class="panel" role="status" aria-live="polite" hidden style="margin-bottom: 20px;"></div>
 
     <div class="content-grid">
       <section class="panel form-panel">
-        <div class="panel-heading">
-          <div><p class="eyebrow">TRANSAKSI BARU</p><h2>Tambah transaksi</h2></div>
-          <span class="heading-symbol" aria-hidden="true">＋</span>
-        </div>
+        <div class="panel-heading"><div><p class="eyebrow">NEW TRANSACTION</p><h2>Tambah transaksi</h2></div><span class="heading-symbol" aria-hidden="true">＋</span></div>
         <form id="transactionForm" novalidate>
-          <div class="field">
-            <label for="description">Nama transaksi</label>
-            <input type="text" id="description" name="description" placeholder="Contoh: Makan siang" maxlength="70" required>
-            <small class="field-error" id="descriptionError"></small>
-          </div>
-          <div class="field">
-            <label for="amount">Nominal (Rupiah)</label>
-            <div class="amount-input"><span>Rp</span><input type="number" id="amount" name="amount" placeholder="25000" min="1" step="1" required></div>
-            <small class="field-error" id="amountError"></small>
-          </div>
-          <div class="field-row">
-            <div class="field">
-              <label for="type">Jenis transaksi</label>
-              <select id="type" name="type" required>
-                <option value="expense">Pengeluaran</option>
-                <option value="income">Pemasukan</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="date">Tanggal</label>
-              <input type="date" id="date" name="date" required>
-            </div>
-          </div>
+          <div class="field"><label for="date">Tanggal</label><input type="date" id="date" name="date" required></div>
+          <div class="field"><label for="type">Jenis transaksi</label><select id="type" name="type" required><option value="expense">Pengeluaran</option><option value="income">Pemasukan</option></select></div>
+          <div class="field"><label for="category">Kategori</label><select id="category" name="category" required><option value="Makan">Makan</option><option value="Transportasi">Transportasi</option><option value="Kos">Kos</option><option value="Kuliah">Kuliah</option><option value="Belanja">Belanja</option><option value="Hiburan">Hiburan</option><option value="Gaji/Uang Bulanan">Gaji/Uang Bulanan</option><option value="Lainnya">Lainnya</option></select></div>
+          <div class="field"><label for="description">Catatan / nama transaksi (opsional)</label><input type="text" id="description" name="description" placeholder="Contoh: Makan siang" maxlength="100"></div>
+          <div class="field"><label for="amount">Nominal (Rp)</label><div class="amount-input"><span>Rp</span><input type="number" id="amount" name="amount" placeholder="25000" min="1" step="1" required></div><small class="field-error" id="amountError"></small></div>
           <p class="form-message" id="formMessage" role="status" aria-live="polite"></p>
-          <button class="primary-button" type="submit">Simpan transaksi <span aria-hidden="true">→</span></button>
+          <button class="primary-button" type="submit">+ Tambah transaksi <span aria-hidden="true">→</span></button>
         </form>
       </section>
 
       <section class="panel history-panel">
-        <div class="panel-heading history-heading">
-          <div><p class="eyebrow">RIWAYAT</p><h2>Transaksi terbaru</h2></div>
-          <span class="transaction-count" id="transactionCount">0 transaksi</span>
-        </div>
+        <div class="panel-heading history-heading"><div><p class="eyebrow">TRANSACTION HISTORY</p><h2>Riwayat transaksi</h2></div><span class="transaction-count" id="transactionCount">0 transaksi</span></div>
+        <div class="field"><label for="filterTransaksi">Bonus: filter riwayat</label><select id="filterTransaksi"><option value="semua">Semua transaksi</option><option value="income">Pemasukan saja</option><option value="expense">Pengeluaran saja</option></select></div>
+        <button class="primary-button" id="exportCsv" type="button" style="margin-bottom: 12px;">Unduh catatan keuanganmu ↓</button>
         <div class="transaction-list" id="transactionList" aria-live="polite"></div>
-        <div class="empty-state" id="emptyState">
-          <div class="empty-icon" aria-hidden="true">▤</div>
-          <h3>Belum ada transaksi</h3>
-          <p>Transaksi yang kamu tambahkan akan muncul di sini.</p>
-        </div>
+        <div class="empty-state" id="emptyState"><div class="empty-icon" aria-hidden="true">▤</div><h3>Belum ada transaksi</h3><p>Transaksi yang kamu tambahkan akan muncul di sini.</p></div>
       </section>
     </div>
     <p class="storage-note"><span aria-hidden="true">●</span> Data tersimpan otomatis di browser pada perangkat ini.</p>

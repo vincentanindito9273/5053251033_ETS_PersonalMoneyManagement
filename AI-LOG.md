@@ -6,10 +6,15 @@
 - Dipakai: `index.html`, `style.css`, dan `script.js` untuk checkpoint 1, termasuk fungsi `muatData()`, `simpanData()`, `renderDaftar()`, penanganan form `tambahTransaksi()`, dan `hapusTransaksi()`.
 - Diubah: Nama aplikasi menjadi MoneyTalks, tampilan disesuaikan dengan tema hijau gelap, kategori transaksi disesuaikan dengan kebutuhan mahasiswa kos, serta ditambahkan input uang bulanan dan tampilan jatah harian.
 
-**## Checkpoint 2 (W5–W6): ringkasan transaksi dan validasi form**
+## Checkpoint 2 (W5–W6): ringkasan transaksi dan validasi form
 
 - Prompt: "Lanjutkan aplikasi MoneyTalks yang sudah dibuat pada checkpoint 1. Bantu saya mengerjakan checkpoint W5–W6 dengan kode yang sederhana dan mudah dipahami mahasiswa semester awal. W5 adalah menambahkan ringkasan total pemasukan dan total pengeluaran berdasarkan seluruh transaksi yang tersimpan, serta memastikan angka ringkasan berubah secara otomatis ketika transaksi ditambahkan atau dihapus. W6 adalah menambahkan validasi form agar nama atau catatan transaksi yang wajib diisi tidak kosong, nominal harus berupa angka positif, dan tanggal transaksi harus valid. Tampilkan pesan kesalahan jika input tidak sesuai. Gunakan kembali struktur file index.html, style.css, dan script.js yang sudah ada, serta pastikan ID elemen HTML sesuai dengan JavaScript.
 
 - Dipakai: `index.html`, `style.css`, dan `script.js` untuk menampilkan ringkasan total pemasukan dan pengeluaran, menghitung total berdasarkan jenis transaksi, memperbarui ringkasan setelah transaksi ditambah atau dihapus, serta memvalidasi input sebelum data disimpan.
 
 - Diubah: Kartu ringkasan saldo saat ini dihapus dari tampilan sehingga hanya menampilkan total pemasukan dan total pengeluaran. Validasi nominal dibuat agar hanya menerima angka bulat yang lebih besar dari nol, sedangkan validasi nama transaksi dan tanggal digunakan untuk mencegah data yang tidak sesuai. Fitur uang bulanan, perhitungan jatah harian, peringatan pengeluaran harian, dan fitur bonus belum dimasukkan pada versi ini.
+
+ ## Checkpoint 3 (W7–W8): uang bulanan, jatah harian, peringatan, dan fitur bonus
+- Prompt: Lanjutkan MoneyTalks dengan fitur uang bulanan yang dapat diinput dan disimpan, perhitungan sisa uang, jatah harian berdasarkan sisa uang dan sisa hari pada bulan berjalan, serta peringatan jika pengeluaran hari ini melewati jatah harian. Tambahkan fitur bonus dan jelaskan cara kerjanya.
+- Dipakai: index.html untuk formulir uang bulanan, kartu sisa uang dan jatah harian, peringatan, filter riwayat, dan tombol ekspor CSV. script.js menggunakan loadAllowance(), renderSummary(), renderTransactions(), serta event pada formulir uang bulanan, filter, dan tombol ekspor.
+- Diubah: Nominal uang bulanan disimpan terpisah di localStorage. Sisa uang dihitung dari uang bulanan ditambah pemasukan bulan berjalan lalu dikurangi pengeluaran bulan berjalan. Jatah harian merupakan sisa uang dibagi jumlah hari tersisa dalam bulan, termasuk hari ini. Peringatan muncul ketika pengeluaran hari ini lebih besar daripada jatah harian yang dihitung. Bonus yang ditambahkan adalah filter riwayat transaksi berdasarkan pemasukan/pengeluaran dan unduh CSV agar riwayat dapat dibuka di Excel atau Google Sheets. style.css dipertahankan tanpa perubahan.
